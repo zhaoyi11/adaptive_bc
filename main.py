@@ -21,25 +21,24 @@ R_MAX_HOPPER = 6.918
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     # Experiment
-    parser.add_argument("--policy", default="REDQ_BC")               # Policy name
-    parser.add_argument("--env", default="hopper-medium-replay-v0")        # OpenAI gym environment name
-    parser.add_argument("--seed", default=0, type=int)              # Sets Gym, PyTorch and Numpy seeds
-    parser.add_argument("--eval_freq", default=5000, type=int)       # How often (time steps) we evaluate
-    parser.add_argument("--max_timesteps", default=250_000, type=int)   # Max time steps to run environment
-    parser.add_argument("--save_model", action="store_true")        # Save model and optimizer parameters
-    parser.add_argument("--load_policy_id", default="")
-    parser.add_argument("--episode_length", default=1000, type=int)
-    # TD3
-    parser.add_argument("--expl_noise", default=0.1)                # Std of Gaussian exploration noise
-    parser.add_argument("--batch_size", default=256, type=int)      # Batch size for both actor and critic
-    parser.add_argument("--discount", default=0.99)                 # Discount factor
-    parser.add_argument("--tau", default=0.005)                     # Target network update rate
-    parser.add_argument("--policy_noise", default=0.2)              # Noise added to target policy during critic update
-    parser.add_argument("--noise_clip", default=0.5)                # Range to clip target policy noise
-    parser.add_argument("--policy_freq", default=2, type=int)       # Frequency of delayed policy updates
-    
+    parser.add_argument("--policy", default="REDQ_BC")                      # Policy name
+    parser.add_argument("--env", default="hopper-medium-replay-v0")         # d4rl environment name
+    parser.add_argument("--seed", default=0, type=int)                      # Random Seed
+    parser.add_argument("--eval_freq", default=5000, type=int)              # How often (time steps) we evaluate
+    parser.add_argument("--max_timesteps", default=250_000, type=int)       # Max finetuning timesteps to run
     parser.add_argument("--pretrain_timesteps", default=1_000_000, type=int)
     parser.add_argument("--num_updates", type=int, default=10, help='Num of update steps per data point.')
+    parser.add_argument("--save_model", action="store_true")                # Save model and optimizer parameters
+    parser.add_argument("--load_policy_id", default="")                     # Load policy and optimizer with the given id
+    parser.add_argument("--episode_length", default=1000, type=int)
+    # TD3
+    parser.add_argument("--expl_noise", default=0.1)                        # Std of Gaussian exploration noise
+    parser.add_argument("--batch_size", default=256, type=int)              # Batch size for both actor and critic
+    parser.add_argument("--discount", default=0.99)                         # Discount factor
+    parser.add_argument("--tau", default=0.005)                             # Target network update rate
+    parser.add_argument("--policy_noise", default=0.2)                      # Noise added to target policy during critic update
+    parser.add_argument("--noise_clip", default=0.5)                        # Range to clip target policy noise
+    parser.add_argument("--policy_freq", default=2, type=int)               # Frequency of delayed policy updates
     # ablation, dataset
     parser.add_argument('--sample_method', choices=['random', 'best'], default='random')
     parser.add_argument('--sample_ratio', type=float, default=0.05)
