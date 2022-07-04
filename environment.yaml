@@ -1,0 +1,17 @@
+name: adaptive
+channels: 
+  - defaults
+dependencies:
+  - python=3.8
+  - pytorch
+  - torchvision
+  - cudatoolkit=11.3
+  - pip
+  - pip:
+    - numpy
+    - termcolor
+    - gym==0.21.0
+    - dm-control
+    - wandb
+    - tqdm
+    - git+https://github.com/rail-berkeley/d4rl@master#egg=d4rl
